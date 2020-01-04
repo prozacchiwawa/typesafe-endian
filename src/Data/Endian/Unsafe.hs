@@ -1,3 +1,4 @@
+{-# LANGUAGE CPP #-}
 {-# LANGUAGE UnicodeSyntax #-}
 
 module Data.Endian.Unsafe (
@@ -34,4 +35,6 @@ unsafeUnwrapBigEndian    (BE a) = a
 -- | pull out of LittleEndian newtype without any swapping
 unsafeUnwrapLittleEndian ∷ EndianSensitive α ⇒ LittleEndian α → α
 unsafeUnwrapLittleEndian (LE a) = a
+#ifndef ETA_VERSION
 {-# INLINE unsafeUnwrapBigEndian #-}
+#endif

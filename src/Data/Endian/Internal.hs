@@ -11,7 +11,25 @@ import Foreign.C.Types
 import Foreign.Ptr (IntPtr, WordPtr)
 import System.Posix.Types (CSsize)
 
+#ifndef ETA_VERSION
 #include <HsBaseConfig.h>
+#else
+#define WORDS_BIGENDIAN 1
+#define WORD_SIZE_IN_BITS 32
+#define HTYPE_PTRDIFF_T Data.Int.Int64
+#define HTYPE_SHORT Data.Int.Int16
+#define HTYPE_UNSIGNED_SHORT Data.Word.Word16
+#define HTYPE_INTMAX_T Data.Int.Int64
+#define HTYPE_UINTMAX_T Data.Word.Word64
+#define HTYPE_INTPTR_T Data.Int.Int32
+#define HTYPE_UINTPTR_T Data.Word.Word32
+#define HTYPE_INT Data.Int.Int32
+#define HTYPE_UNSIGNED_INT Data.Word.Word32
+#define HTYPE_LONG Data.Int.Int64
+#define HTYPE_UNSIGNED_LONG Data.Word.Word64
+#define HTYPE_SSIZE_T Data.Int.Int64
+#define HTYPE_SIZE_T Data.Word.Word64
+#endif
 
 -- | Raw, endian-sensitive data
 class EndianSensitive α where

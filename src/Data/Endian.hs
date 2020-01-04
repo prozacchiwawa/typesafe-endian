@@ -13,7 +13,11 @@ module Data.Endian (
 import Data.Endian.Internal
 import Data.Endian.Wrap
 
+#ifndef ETA_VERSION
 #include <HsBaseConfig.h>
+#else
+#define WORS_BIGENDIAN 1
+#endif
 
 -- | Convert from the native format to big-endian
 toBigEndian      ∷ EndianSensitive α ⇒ α → BigEndian α
